@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>CUBIC PROJECTION w/ 6 IMAGES</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+		 <link rel="stylesheet" type="text/css" href="tabfile.css">
+	</head>
+	<body>
+<div id="projection">
+</div>
+		<script src="js/three.js"></script>
+		<script src="js/three.min.js"></script>
+		<script src="OrbitControls.js"></script>
+		
+		<script>
+		<!-- EQUIRECTANGULAR w/ 1 IMAGE -->
+		
+		
+		
+		<!-- CUBIC PROJECTION w/ 6 IMAGES -->
+			var scene = new THREE.Scene();
+			var color = new THREE.Color(0xff8800);
+			scene.background = color;
+			
+			var camera = new THREE.PerspectiveCamera( 55, window.innerWidth/window.innerHeight, 45, 30000 );
+			var renderer = new THREE.WebGLRenderer({antialias:true});
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.getElementById("projection").appendChild( renderer.domElement );
+			
+		function init(){
+	
+			var materialArray = [];
+			var ft = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_front.png');
+			var bk = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_back.png');
+			var lt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_left.png');
+			var rt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_right.png');
+			var tp = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_top.png');
+			var bm = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_bottom.png');
+			
+			materialArray.push(new THREE.MeshBasicMaterial({map: ft}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: bk}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: lt}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: rt}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: tp}));
+			materialArray.push(new THREE.MeshBasicMaterial({map: bm}));
+			
+			for(let i=0;i<6;i++){
+				materialArray[i].side = THREE.BackSide;
+			}
+
+			
+			var skyboxGeo = new THREE.BoxGeometry(10000,10000,10000);
+			var skyBox = new THREE.Mesh( skyboxGeo, materialArray);
+			scene.add( skyBox );
+	
+			//var geometry = new THREE.BoxGeometry( 1,1,1 );
+			//var material = new THREE.MeshBasicMaterial( { color: 0xff2299} );
+			//var cube = new THREE.Mesh( geometry, material );
+			//scene.add( cube );
+
+			camera.position.set(-1800,0,0);
+			
+			var controls = new THREE.OrbitControls( camera, renderer.domElement );
+			controls.minDistance = 500;
+			controls.maxDistance = 1500;
+			//controls.update();
+			animate();
+			}
+			
+			var animate = function () {
+				requestAnimationFrame( animate );
+
+				//cube.rotation.x += 0.01;
+				//cube.rotation.y += 0.01;
+				
+				//controls.update();
+				renderer.render( scene, camera );
+			};
+
+			init();
+			animate();
+		</script>
+		</div>
+	</body>
+</html>

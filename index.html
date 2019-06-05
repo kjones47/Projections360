@@ -34,10 +34,10 @@
 			var materialArray = [];
 			var ft = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_front.png');
 			var bk = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_back.png');
-			var lt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_left.png');
-			var rt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_right.png');
-			var tp = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_top.png');
-			var bm = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_bottom.png');
+			var lt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_top.png');
+			var rt = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_bottom.png');
+			var tp = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_left.png');
+			var bm = new THREE.TextureLoader().load('https://raw.githubusercontent.com/FinweLtd/orion360-sdk-test-content/master/set1/cube/Orion360_test_image_right.png');
 			
 			materialArray.push(new THREE.MeshBasicMaterial({map: ft}));
 			materialArray.push(new THREE.MeshBasicMaterial({map: bk}));
@@ -45,6 +45,7 @@
 			materialArray.push(new THREE.MeshBasicMaterial({map: rt}));
 			materialArray.push(new THREE.MeshBasicMaterial({map: tp}));
 			materialArray.push(new THREE.MeshBasicMaterial({map: bm}));
+			
 			
 			for(let i=0;i<6;i++){
 				materialArray[i].side = THREE.BackSide;
